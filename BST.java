@@ -102,6 +102,20 @@ public class BST{
           printInRange(root.left,k1,k2);
         }
       }
+      public static boolean isValidBst(Node root,Node min,Node max){
+         if(root==null){
+          return true;
+         }
+
+         if (min!=null && root.data<=min.data) {
+          return false;
+         }
+         else if (max!=null && root.data>=max.data) {
+          return false;
+         }
+        
+         return  isValidBst(root.left, min, root) && isValidBst(root.right , root, max);
+      }
   public static void main(String[] args) {
    
  int values[]={8,5,3,1,4,6,10,11,14};
@@ -121,5 +135,12 @@ System.out.println(searchBst(root, 8));
    System.out.println();
    System.out.println("Print in range");
    printInRange(root, 5,12);
+   System.out.println();
+   if (isValidBst(root, null, null)){
+    System.out.println("Valid");
+   }
+   else{
+    System.out.println("Not Valid");
+   }
 
 }}
